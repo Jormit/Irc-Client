@@ -7,4 +7,4 @@ Super simple python irc client that can send and receive messages using sockets.
 - Allow user to change channels.
 
 # Screenshot
-![](img/irc.png)
+![](img/irc1.png)
