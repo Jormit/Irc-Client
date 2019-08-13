@@ -2,6 +2,7 @@ import socket
 import time
 import threading
 import os
+from datetime import datetime
 
 # Class handles all irc i/o.
 class Irc:
@@ -30,7 +31,7 @@ class Irc:
 		resp = self.socket.recv(2040).decode("UTF-8")
 
 		if resp.find('PING') != -1:                      
-            self.irc.send(bytes('PONG ' + resp.split().decode("UTF-8") [1] + '\r\n', "UTF-8")) 
+			self.socket.send(bytes('PONG ' + resp.split()[1] + '\r\n', "UTF-8")) 
 
 		return resp
 
@@ -39,7 +40,7 @@ class Irc:
 		if resp:
 			try:
 				msg = resp.split(":")
-				print("\n" + "<" + msg[1].split("!")[0] + "> " + msg[2].strip())
+				print(datetime.now().strftime('%d %H:%M:%S') + " <" + msg[1].split("!")[0] + "> " + msg[2].strip())
 			except:
 				print(resp)
 
@@ -51,19 +52,19 @@ class Irc:
 		if (message.startswith("/join")):
 			self.channel = message.split()[1]
 			self.socket.send(bytes("JOIN " + self.channel + "\n", "UTF-8"))
+		if (message.startswith("/q")):
+			os._exit(1)
 
 def get_input(irc):
 	while True:
-		message = input()
-		if (message == "exit"):
-			os._exit(1)
+		message = input()			
 
 		if (message.startswith("/")):
 			irc.handle_command(message)
 			continue
 
 		irc.send(message)
-		print("<" + irc.username + "> " + message)
+		print(datetime.now().strftime('%d %H:%M:%S') + " <" + irc.username + "> " + message)
 		
 
 irc = Irc("zz", "password", "#main")
