@@ -4,3 +4,4 @@ Super simple python irc client that can send and receive messages using sockets.
 # future improvements.
 - Add support for commands.
 - Clean up ui.
+- Curses???
