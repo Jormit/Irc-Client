@@ -78,9 +78,3 @@ response_thread.start()
 # Start the response loop.
 while True:
 	irc.print_response()
-	
-
-
-
-
-
