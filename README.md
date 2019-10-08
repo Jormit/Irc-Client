@@ -1,7 +1,13 @@
 ## irc-client 
-Super simple python irc client that can send and receive messages using sockets. Can Join/switch channels using /join #channel-name. Quit using /q.  Not really meant for actual use (yet!).
+Super simple python irc client that can send and receive messages using sockets. 
+
+## usage
+`python irc.py irc.server.net 3333`
+
+Available commands:
+`/join #channel-name /q to quit`
 
 ## future improvements.
-- Add support for commands.
+- Add support for more commands.
 - Clean up ui.
 - Curses???
